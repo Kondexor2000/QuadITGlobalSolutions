@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .category-item {
+            background-color: #e7e7e7;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .category-item:hover {
+            background-color: #d0d0d0;
+        }
+
+        .no-results {
+            color: #999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if comment %}
+            <ul id="category-list">
+                {% for comment in comments %}
+                    <li class="category-item">{{ comment }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-results">No results found for "{{ query }}"</p>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryItems = document.querySelectorAll('.category-item');
+
+            categoryItems.forEach(item => {
+                item.addEventListener('mouseover', function() {
+                    item.style.backgroundColor = '#c0c0c0';
+                });
+
+                item.addEventListener('mouseout', function() {
+                    item.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
