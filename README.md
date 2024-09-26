@@ -31,7 +31,7 @@ pip freeze > requirements.txt
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py makemigrations
-python manage.py test
+pytest
 python manage.py runserver
 
 ### Notes for Usage
