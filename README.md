@@ -22,7 +22,7 @@ A brief description of the project and its purpose. A short overview of what the
 
 **Clone the repository:**
 
-'''bash
+```bash
 git clone https://github.com/username/SocialService.git
 venv\Scripts\Active
 cd blogservice
