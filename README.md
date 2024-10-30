@@ -23,7 +23,7 @@ A brief description of the project and its purpose. A short overview of what the
 **Clone the repository:**
 
 ```bash
-git clone https://github.com/username/SocialService.git
+git clone https://github.com/Kondexor2000/SocialService.git
 venv\Scripts\Active
 cd blogservice
 mkdir requirements.txt
