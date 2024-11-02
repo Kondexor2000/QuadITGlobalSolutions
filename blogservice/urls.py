@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from blogserviceapp.views.AccountViews import (
     SignUpView,
     EditProfileView,
@@ -56,6 +57,8 @@ from blogserviceapp.views.CategoryViews import (
 )
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+
     path('', posts_readed_view, name='index'),
     path('posts_pk/<int:user_pk>', posts_by_searched_user, name='searched_user'),
     path('posts_request/', posts_by_request_user, name='request_user'),

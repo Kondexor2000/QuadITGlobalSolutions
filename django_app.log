@@ -1,0 +1,11 @@
+ERROR 2024-11-02 22:38:13,523 PostViews Error retrieving all posts for user AnonymousUser: Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x000001A8B9FCFE20>>.
+ERROR 2024-11-02 22:38:13,525 log Internal Server Error: /
+ERROR 2024-11-02 22:38:13,526 basehttp "GET / HTTP/1.1" 500 41
+WARNING 2024-11-02 22:38:13,918 log Not Found: /favicon.ico
+WARNING 2024-11-02 22:38:13,920 basehttp "GET /favicon.ico HTTP/1.1" 404 5963
+WARNING 2024-11-02 22:40:36,391 log Method Not Allowed: /add-post/
+WARNING 2024-11-02 22:40:36,395 basehttp "GET /add-post/ HTTP/1.1" 405 12884
+WARNING 2024-11-02 22:41:45,969 log Bad Request: /add-post/
+WARNING 2024-11-02 22:41:45,971 basehttp "POST /add-post/ HTTP/1.1" 400 13024
+WARNING 2024-11-02 22:42:30,847 log Not Found: /admin/
+WARNING 2024-11-02 22:42:30,847 basehttp "GET /admin/ HTTP/1.1" 404 5948
