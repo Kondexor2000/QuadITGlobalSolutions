@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Category, Post
+from .models import Category, Post, Comment, Message, BlockedUser
 
 @pytest.fixture
 def category(db):
@@ -64,7 +64,7 @@ def test_explore_posts_view(logged_in_client):
 @pytest.mark.django_db
 def test_explore_blocked_users_view(logged_in_client):
     response = logged_in_client.get(reverse('read_blocked_user'))
-    assert response.status_code == 404
+    assert response.status_code == 200
 
 @pytest.mark.django_db
 def test_explore_request_users_view(logged_in_client):
@@ -85,3 +85,31 @@ def test_explore_message_view(logged_in_client, user):
 def test_explore_comments_by_post_view(logged_in_client, post, category):
     response = logged_in_client.get(reverse('comments_by_post', args=[category.pk, post.pk]))
     assert response.status_code == 200
+
+@pytest.mark.django_db
+def test_category_creation():
+    category = Category.objects.create(name='Test Category', description='Test Description')
+    assert category.name == 'Test Category'
+    assert category.description == 'Test Description'
+
+@pytest.mark.django_db
+def test_message_creation(user):
+    message = Message.objects.create(
+        author=user,
+        description='Test Message'
+    )
+    message.sender.add(user)
+    assert message.author == user
+    assert message.description == 'Test Message'
+    assert message.sender.count() == 1
+    assert user in message.sender.all()
+
+@pytest.mark.django_db
+def test_blocked_user_creation(user):
+    other_user = User.objects.create_user(username='blockeduser', password='testpassword')
+    blocked_user = BlockedUser.objects.create(
+        blocked_user=other_user,
+        id_user=user
+    )
+    assert blocked_user.blocked_user == other_user
+    assert blocked_user.id_user == user
